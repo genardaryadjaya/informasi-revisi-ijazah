@@ -1301,24 +1301,67 @@ a:focus-visible {
 /* Hero slideshow */
 .hero-slideshow {
 	position: relative;
-	min-height: 88px;
-	font-size: 18px;
-	color: var(--text-700);
+	min-height: 120px; /* Tinggi minimal lebih besar */
+	font-size: 22px; /* Font lebih besar dari 18px */
+	color: var(--text);
+	font-weight: 500;
+	line-height: 1.6;
+	text-align: center;
+	max-width: 900px;
+	margin: 0 auto;
+	padding: 20px 0;
+	overflow: hidden; /* Mencegah scrollbar */
 }
+
 .hero-slideshow .slide {
 	position: absolute;
 	opacity: 0;
-	transform: translateY(8px);
-	transition: opacity 400ms ease, transform 400ms ease;
-	max-width: 920px;
-	line-height: 1.7;
+	transform: translateY(20px); /* Animasi lebih halus */
+	transition: all 600ms ease-in-out; /* Transisi lebih cepat dan smooth */
+	max-width: 900px;
+	line-height: 1.6;
+	padding: 0 20px;
+	width: 100%;
+	left: 0;
+	right: 0;
+	top: 0;
+	will-change: opacity, transform; /* Optimasi performa */
 }
+
 .hero-slideshow .slide.active {
 	opacity: 1;
 	transform: translateY(0);
 }
-@media (max-width: 768px) {
-	.hero-slideshow { font-size: 16px; min-height: 96px; }
+
+/* Responsive untuk mobile */
+@media (max-width: 768px) { 
+	.hero-slideshow { 
+		font-size: 18px; /* Font mobile yang lebih besar */
+		min-height: 140px; /* Tinggi mobile lebih besar */
+		padding: 16px 0;
+	}
+	
+	.hero-slideshow .slide {
+		font-size: 18px;
+		padding: 0 16px;
+		transform: translateY(15px); /* Animasi mobile lebih halus */
+		transition: all 500ms ease-in-out;
+	}
+}
+
+/* Responsive untuk ponsel kecil */
+@media (max-width: 480px) {
+	.hero-slideshow {
+		font-size: 16px;
+		min-height: 120px;
+		padding: 12px 0;
+	}
+	
+	.hero-slideshow .slide {
+		font-size: 16px;
+		padding: 0 12px;
+		transition: all 400ms ease-in-out;
+	}
 }
 
 /* Fokus tautan navbar: terlihat tapi tidak mengganggu */
