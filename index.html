@@ -1015,16 +1015,17 @@
 			const container = document.querySelector('.hero-slideshow');
 			if (!container) return;
 			const messages = [
-				"Ijazah adalah dokumen resmi pengakuan kelulusan peserta didik (Pasal 1).",
-				"Sertifikat Kompetensi mengakui kompetensi setelah lulus uji kompetensi (Pasal 1).",
-				"Ijazah diterbitkan oleh satuan pendidikan yang terakreditasi (Pasal 2).",
-				"Diberikan kepada peserta didik yang lulus ujian dan memenuhi syarat kelulusan (Pasal 3).",
-				"Memuat identitas peserta didik, satuan pendidikan, program studi, tanggal lulus, nomor seri, dan tanda tangan (Pasal 4).",
-				"Penggantian karena rusak/hilang/salah tulis mengikuti ketentuan bukti sah (Pasal 5).",
-				"Arsip ijazah wajib disimpan minimal 10 tahun oleh satuan pendidikan (Pasal 8).",
-				"Ijazah dari satuan pendidikan yang tidak memenuhi ketentuan dinyatakan tidak sah (Pasal 9)."
+				"Selamat datang di Portal Informasi Ijazah - Temukan semua yang perlu Anda ketahui tentang pembuatan dan perbaikan ijazah.",
+				"Ijazah adalah dokumen resmi pengakuan kelulusan peserta didik yang diterbitkan oleh satuan pendidikan terakreditasi.",
+				"Layanan perbaikan data ijazah tersedia untuk kesalahan penulisan nama, tanggal, atau informasi lainnya.",
+				"Duplikat ijazah dapat dibuat jika dokumen asli hilang atau rusak dengan melampirkan surat kehilangan dari kepolisian.",
+				"Legalisir ijazah diperlukan untuk keperluan administrasi, pekerjaan, atau melanjutkan pendidikan ke jenjang berikutnya.",
+				"Semua layanan ijazah mengikuti regulasi resmi Kemendikbudristek untuk menjamin keabsahan dokumen.",
+				"Tim kami siap membantu Anda memahami alur dan persyaratan pengurusan ijazah dengan mudah dan jelas.",
+				"Konsultasi gratis tersedia untuk memastikan Anda memiliki semua dokumen yang diperlukan sebelum mengajukan permohonan."
 			];
 			let index = 0;
+			
 			function render(text){
 				let node = container.querySelector('.slide');
 				if (!node) {
@@ -1032,16 +1033,24 @@
 					node.className = 'slide';
 					container.appendChild(node);
 				}
+				
+				// Fade out slide lama dengan cepat
 				node.classList.remove('active');
-				node.textContent = text;
-				requestAnimationFrame(() => node.classList.add('active'));
+				
+				// Tunggu fade out selesai, lalu ganti text dan fade in
+				setTimeout(() => {
+					node.textContent = text;
+					node.classList.add('active');
+				}, 300); // Tunggu 300ms untuk fade out
 			}
+			
 			function next(){
 				index = (index + 1) % messages.length;
 				render(messages[index]);
 			}
+			
 			render(messages[index]);
-			setInterval(next, 1000);
+			setInterval(next, 4000); // 4 detik antar slide
 		});
 
 		// Hapus referensi kontrol mobile yang sudah ditiadakan dengan guard
